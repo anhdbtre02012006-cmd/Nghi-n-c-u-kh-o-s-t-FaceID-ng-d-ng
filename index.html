@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face ID Security - Complete System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <div>
+        <div class="logo"><i class="fas fa-fingerprint"></i> SECURE ID</div>
+
+        <div class="menu-item active" onclick="switchView('login')">
+            <i class="fas fa-lock"></i> Đăng Nhập
+        </div>
+
+        <div class="menu-item" onclick="switchView('register')">
+            <i class="fas fa-user-plus"></i> Đăng Ký
+        </div>
+
+        <div class="menu-item" onclick="switchView('update')">
+            <i class="fas fa-sync"></i> Cập Nhật
+        </div>
+
+        <div class="menu-item" onclick="switchView('admin')">
+            <i class="fas fa-database"></i> Quản Trị
+        </div>
+    </div>
+
+    <div class="menu-item logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i> Thoát
+    </div>
+</div>
+
+<div class="main-content">
+
+    <div id="login" class="screen active">
+        <h2>ĐĂNG NHẬP</h2>
+        <p class="subtitle">Nhập tài khoản & Xác thực khuôn mặt</p>
+
+        <div class="input-group">
+            <label>Tài khoản</label>
+            <input type="text" id="login-user">
+        </div>
+
+        <div class="input-group">
+            <label>Mật khẩu</label>
+            <input type="password" id="login-pass">
+        </div>
+
+        <div class="camera-box">
+            <video id="video-login" autoplay playsinline muted></video>
+            <div class="scan-line" id="scan-login"></div>
+            <div class="face-frame"></div>
+        </div>
+
+        <button class="btn btn-primary" onclick="processLogin()">
+            <i class="fas fa-shield-alt"></i> Xác thực & Đăng nhập
+        </button>
+
+        <div id="msg-login" class="status-msg"></div>
+    </div>
+
+    <div id="register" class="screen">
+        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+        <p class="subtitle">Tạo thông tin đăng nhập & mẫu Face ID</p>
+
+        <div class="input-group">
+            <label>Họ và Tên</label>
+            <input type="text" id="reg-name">
+        </div>
+
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" id="reg-user">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="reg-pass">
+        </div>
+
+        <div class="camera-box">
+            <video id="video-register" autoplay playsinline muted></video>
+            <div class="scan-line" id="scan-reg"></div>
+            <div class="face-frame"></div>
+        </div>
+
+        <button class="btn btn-primary register-btn" onclick="processRegister()">
+            <i class="fas fa-save"></i> Hoàn Tất Đăng Ký
+        </button>
+
+        <div id="msg-reg" class="status-msg"></div>
+    </div>
+
+    <div id="update" class="screen">
+        <h2>CẬP NHẬT FACE ID</h2>
+        <p class="subtitle">Quét lại khuôn mặt để tăng độ chính xác</p>
+
+        <div class="camera-box">
+            <video id="video-update" autoplay playsinline muted></video>
+            <div class="scan-line" id="scan-update"></div>
+            <div class="face-frame"></div>
+        </div>
+
+        <button class="btn btn-primary update-btn" onclick="processUpdate()">
+            <i class="fas fa-sync"></i> Cập Nhật Ngay
+        </button>
+
+        <div id="msg-update" class="status-msg"></div>
+    </div>
+
+    <div id="admin" class="screen admin-screen">
+        <h2>QUẢN LÝ USER</h2>
+        <p class="subtitle">Danh sách người dùng hệ thống</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Họ Tên</th>
+                    <th>Bảo mật</th>
+                    <th>Hoạt động cuối</th>
+                </tr>
+            </thead>
+            <tbody id="user-table"></tbody>
+        </table>
+    </div>
+    
+</div>
+
+<script src="assets/js/database.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/admin.js"></script>
+
+</body>
+</html>
